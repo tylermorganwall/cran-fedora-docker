@@ -1,0 +1,8 @@
+# config.site
+CFLAGS="-O3 -Wall -pedantic -Wp,-D_FORTIFY_SOURCE=3"
+C17FLAGS="-O3 -Wall -pedantic -Wno-strict-prototypes -Wp,-D_FORTIFY_SOURCE=3"
+FFLAGS="-O2 -pedantic"
+CXXFLAGS="-O3 -Wall -pedantic -frtti -Wp,-D_FORTIFY_SOURCE=3 \
+          -Wno-missing-template-arg-list-after-template-kw"
+CPPFLAGS="-isystem /usr/local/clang20/include"
+LDFLAGS="-L/usr/local/clang20/lib -L/usr/local/clang20/lib64"
