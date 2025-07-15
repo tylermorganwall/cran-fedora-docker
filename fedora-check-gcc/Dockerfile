@@ -21,7 +21,7 @@ RUN dnf -y --refresh \
         libX11-devel libXt-devel libXmu-devel libXext-devel \
         libSM-devel libICE-devel libXrender-devel \
         libtirpc-devel libxcrypt-devel ncurses-devel \
-        tcl-devel tk-devel pkgconf-pkg-config \
+        tcl-devel tk-devel pkgconf-pkg-config libdeflate \
         texlive-scheme-full ghostscript java-21-openjdk-devel \
         cmake ninja-build python3 python3-devel libstdc++-devel \
 	&& dnf clean all
@@ -30,16 +30,6 @@ RUN dnf -y install binutils gcc-plugin-devel
 # Install pandoc 
 RUN curl -L https://github.com/jgm/pandoc/releases/download/3.7.0.2/pandoc-3.7.0.2-linux-amd64.tar.gz \
   | tar xz -C /usr/local --strip-components=1
-
-# Install latest libdeflate 1.24 from github
-RUN curl -fsSL \
-      https://github.com/ebiggers/libdeflate/releases/download/v1.24/libdeflate-1.24.tar.gz \
-      | tar -xz && \
-    cd libdeflate-1.24 && \
-    cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local && \
-    cmake --build build --parallel && \
-    cmake --install build && \
-    cd / && rm -rf libdeflate-1.24
 
 # Install R-devel 
 COPY config.site /usr/local/share/
